@@ -24,8 +24,6 @@
         {
             this.apiSecret = apiSecret;
             this.httpClient = httpClient;
-
-            this.httpClient.DefaultRequestHeaders.Add("Content-type", "application/json");
         }
         #endregion Constructor
 
@@ -34,15 +32,16 @@
         {
             try
             {
-                httpClient.DefaultRequestHeaders.Add("Authorization", string.Format("Basic {0}", apiSecret));
+                httpClient.DefaultRequestHeaders.Add(
+                    "Authorization", string.Format("Basic {0}", Helper.GetBasicAuthentication(apiSecret)));
 
-                string requestContent = JsonSerializer.Serialize(createTransaction, new JsonSerializerOptions
+                string jsonString = JsonSerializer.Serialize(createTransaction, new JsonSerializerOptions
                 {
                     IgnoreNullValues = true,
                 });
 
                 HttpResponseMessage response = await httpClient.PostAsync(Constants.TRANSACTION_ENDPOINT,
-                    new StringContent(requestContent));
+                    new StringContent(jsonString, System.Text.Encoding.UTF8, "application/json"));
 
                 string responseString = string.Empty;
 
@@ -67,7 +66,7 @@
 
             try
             {
-                httpClient.DefaultRequestHeaders.Add("Authorization", string.Format("bearer {0}", apiSecret));
+                httpClient.DefaultRequestHeaders.Add("Authorization", string.Format("bearer {0}", accessToken));
 
                 HttpResponseMessage response = await httpClient.GetAsync(Constants.TRANSACTION_ENDPOINT);
 

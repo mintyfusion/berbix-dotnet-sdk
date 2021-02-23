@@ -14,7 +14,7 @@
 
         /// <summary>Transaction ID that is represented by the access token.</summary>
         [JsonPropertyName("transaction_id")]
-        public string TransactionId { get; set; }
+        public long? TransactionId { get; set; }
 
         /// <summary>Access token to be used in subsequent API requests for user metadata.</summary>
         [JsonPropertyName("access_token")]
@@ -26,7 +26,7 @@
 
         /// <summary>Number of seconds before the access token expires.</summary>
         [JsonPropertyName("expires_in")]
-        public int ExpiresIn { get; set; }
+        public int? ExpiresIn { get; set; }
 
         /// <summary></summary>
         [JsonPropertyName("token_type")]

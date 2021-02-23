@@ -15,7 +15,7 @@
 
         /// <summary></summary>
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public long Id { get; set; }
 
         /// <summary></summary>
         [JsonPropertyName("action")]
