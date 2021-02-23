@@ -1,16 +1,15 @@
 ﻿namespace Tutkoo.mintyfusion.Berbix.Client.Interface
 {
     #region namespace
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
+    using Model.Token;
+    using System.Threading.Tasks;
     #endregion namespace
 
     #region Interface
-    public class ITransaction
+    public interface IToken
     {
         #region Methods
-
+        Task<TokenModel> CreateAsync(string refreshToken);
         #endregion Methods
     }
     #endregion Interface

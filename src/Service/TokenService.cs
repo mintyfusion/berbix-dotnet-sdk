@@ -30,7 +30,7 @@
         #endregion Constructor
 
         #region Public Methods
-        public async Task<TokenModel> CreateToken(string refreshToken)
+        public async Task<TokenModel> CreateAsync(string refreshToken)
         {
             if (string.IsNullOrEmpty(refreshToken))
                 throw new ArgumentNullException("refreshToken");
