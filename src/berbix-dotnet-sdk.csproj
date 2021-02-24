@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Tutkoo.mintyfusion.Berbix.Client</RootNamespace>
+    <AssemblyName>Tutkoo.mintyfusion.Berbix.Client</AssemblyName>
   </PropertyGroup>
 
 </Project>
