@@ -2,6 +2,7 @@
 {
     #region namespace
     using Field;
+    using System;
     using System.Text.Json.Serialization;
     #endregion namespace
 
@@ -20,6 +21,14 @@
         /// <summary></summary>
         [JsonPropertyName("action")]
         public string Action { get; set; }
+
+        /// <summary></summary>
+        [JsonPropertyName("completed_at")]
+        public DateTimeOffset CompletedAt { get; set; }
+
+        /// <summary></summary>
+        [JsonPropertyName("created_at")]
+        public DateTimeOffset CreatedAt { get; set; }
 
         /// <summary></summary>
         [JsonPropertyName("fields")]
