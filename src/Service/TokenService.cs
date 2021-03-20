@@ -21,11 +21,17 @@
 
         #region Constructor
         public TokenService(IConfiguration configuration,
-            HttpClient httpClient)
+            IHttpClientFactory httpClientFactory)
         {
-            apiSecret = configuration["Berbix:API_SECRET_KEY"];
+            apiSecret = configuration[Constants.API_SECRET_KEY_NAME];
 
-            this.httpClient = httpClient;
+            if (string.IsNullOrEmpty(apiSecret))
+                throw new InvalidOperationException(string.Format("Please provide a configuration parameter named {0}", Constants.API_SECRET_KEY_NAME));
+
+            httpClient = httpClientFactory.CreateClient(Constants.HTTP_NAMED_CLIENT);
+
+            if (httpClient == null)
+                throw new InvalidOperationException(string.Format("Please create a named HttpClient with name {0}", Constants.HTTP_NAMED_CLIENT));
         }
         #endregion Constructor
 

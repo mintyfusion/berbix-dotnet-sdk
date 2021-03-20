@@ -2,9 +2,10 @@
 {
     #region namespace
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
     using NUnit.Framework;
     using System;
-    using System.Net.Http;
     using System.Text.Json;
     using System.Threading.Tasks;
     using Tutkoo.mintyfusion.Berbix.Client.Interface;
@@ -18,7 +19,7 @@
         #region Fields
         private IConfiguration configuration = null;
 
-        private ITransaction transactionService = null;
+        public IServiceProvider ServiceProvider { get; set; }
         #endregion Fields
 
         #region Public Methods
@@ -31,18 +32,25 @@
 
             configuration = configBuilder.Build();
 
-            HttpClient httpClient = new HttpClient
-            {
-                BaseAddress = new Uri(Constants.API_URL)
-            };
+            var builder = new HostBuilder()
+               .ConfigureServices((hostContext, services) =>
+               {
+                   services.AddSingleton(configuration);
 
-            transactionService = new TransactionService(configuration,
-                httpClient);
+                   services.AddHttpClient(Constants.HTTP_NAMED_CLIENT,
+                       x => x.BaseAddress = new Uri(Constants.API_URL));
+
+                   services.AddScoped<ITransaction, TransactionService>();
+               }).Build();
+
+            ServiceProvider = builder.Services;
         }
 
         [Test]
         public async Task GetTransaction()
         {
+            ITransaction transactionService = (ITransaction)ServiceProvider.GetService(typeof(ITransaction));
+
             TransactionVerificationModel verification =  await transactionService.GetVerificationAsync(configuration["ACCESS_TOKEN"]);
 
             Console.WriteLine(JsonSerializer.Serialize(verification));
@@ -61,6 +69,8 @@
                 },
                 Phone = configuration["PHONE"]
             };
+
+            ITransaction transactionService = (ITransaction)ServiceProvider.GetService(typeof(ITransaction));
 
             TransactionTokenModel token = await transactionService.CreateAsync(createTransaction);
 
