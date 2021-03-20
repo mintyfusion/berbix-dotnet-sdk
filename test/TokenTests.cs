@@ -2,9 +2,10 @@
 {
     #region namespace
     using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
     using NUnit.Framework;
     using System;
-    using System.Net.Http;
     using System.Text.Json;
     using System.Threading.Tasks;
     using Tutkoo.mintyfusion.Berbix.Client.Interface;
@@ -18,7 +19,7 @@
         #region Fields
         private IConfiguration configuration = null;
 
-        private IToken tokenService = null;
+        public IServiceProvider ServiceProvider { get; set; }
         #endregion Fields
 
         #region Public Methods
@@ -31,18 +32,25 @@
 
             configuration = configBuilder.Build();
 
-            HttpClient httpClient = new HttpClient
-            {
-                BaseAddress = new Uri(Constants.API_URL)
-            };
+            var builder = new HostBuilder()
+               .ConfigureServices((hostContext, services) =>
+               {
+                   services.AddSingleton(configuration);
 
-            tokenService = new TokenService(configuration,
-                httpClient);
+                   services.AddHttpClient(Constants.HTTP_NAMED_CLIENT,
+                       x => x.BaseAddress = new Uri(Constants.API_URL));
+
+                   services.AddScoped<IToken, TokenService>();
+               }).Build();
+
+            ServiceProvider = builder.Services;
         }
 
         [Test]
         public async Task GetToken()
         {
+            IToken tokenService = (IToken)ServiceProvider.GetService(typeof(IToken));
+
             TokenModel token = await tokenService.CreateAsync(configuration["REFRESH_TOKEN"]);
 
             Console.WriteLine(JsonSerializer.Serialize(token));

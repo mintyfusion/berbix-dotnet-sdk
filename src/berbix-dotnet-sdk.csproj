@@ -5,7 +5,7 @@
     <RootNamespace>Tutkoo.mintyfusion.Berbix.Client</RootNamespace>
     <AssemblyName>Tutkoo.mintyfusion.Berbix.Client</AssemblyName>
     <PackageId>Tutkoo.mintyfusion.Berbix.Client</PackageId>
-    <PackageVersion>1.0.1</PackageVersion>
+    <PackageVersion>1.0.2</PackageVersion>
     <Authors>Tutkoo Inc.</Authors>
     <Owners>Tutkoo Inc.</Owners>
     <Description>C# library provides simple interfaces to interact with the Berbix API.</Description>
@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="3.1.13" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.13" />
   </ItemGroup>
 
 </Project>

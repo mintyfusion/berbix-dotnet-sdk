@@ -9,6 +9,10 @@
         public static readonly string TOKEN_ENDPOINT = "tokens";
 
         public static readonly string TRANSACTION_ENDPOINT = "transactions";
+
+        public static readonly string HTTP_NAMED_CLIENT = "berbix";
+
+        public static readonly string API_SECRET_KEY_NAME = "Berbix:API_SECRET_KEY";
         #endregion Constants
     }
     #endregion Class
