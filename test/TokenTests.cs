@@ -36,7 +36,7 @@
                 BaseAddress = new Uri(Constants.API_URL)
             };
 
-            tokenService = new TokenService(configuration["API_SECRET_KEY"],
+            tokenService = new TokenService(configuration,
                 httpClient);
         }
 

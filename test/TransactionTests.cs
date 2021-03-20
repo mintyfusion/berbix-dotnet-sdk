@@ -36,7 +36,7 @@
                 BaseAddress = new Uri(Constants.API_URL)
             };
 
-            transactionService = new TransactionService(configuration["API_SECRET_KEY"],
+            transactionService = new TransactionService(configuration,
                 httpClient);
         }
 

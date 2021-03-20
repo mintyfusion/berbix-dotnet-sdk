@@ -2,6 +2,7 @@
 {
     #region namespace
     using Interface;
+    using Microsoft.Extensions.Configuration;
     using Model.Transaction;
     using System;
     using System.Net.Http;
@@ -19,10 +20,11 @@
         #endregion Fields
 
         #region Constructor
-        public TransactionService(string apiSecret, 
+        public TransactionService(IConfiguration configuration, 
             HttpClient httpClient)
         {
-            this.apiSecret = apiSecret;
+            apiSecret = configuration["Berbix:API_SECRET_KEY"];
+
             this.httpClient = httpClient;
         }
         #endregion Constructor
