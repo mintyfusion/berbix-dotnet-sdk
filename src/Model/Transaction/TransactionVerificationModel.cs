@@ -33,6 +33,14 @@
         /// <summary></summary>
         [JsonPropertyName("fields")]
         public FieldModel Fields { get; set; }
+
+        /// <summary></summary>
+        [JsonPropertyName("flags")]
+        public string[] Flags { get; set; }
+
+        /// <summary></summary>
+        [JsonPropertyName("implementation_info")]
+        public string ImplementationInfo { get; set; }
         #endregion Properties
     }
     #endregion Class
