@@ -21,8 +21,24 @@
         public FamilyNameModel FamilyName { get; set; }
 
         /// <summary></summary>
+        [JsonPropertyName("nationality")]
+        public NationalityModel Nationality { get; set; }
+
+        /// <summary></summary>
         [JsonPropertyName("date_of_birth")]
         public DateOfBirthModel DateOfBirth { get; set; }
+
+        /// <summary></summary>
+        [JsonPropertyName("age")]
+        public AgeModel Age { get; set; }
+
+        /// <summary></summary>
+        [JsonPropertyName("email_address")]
+        public EmailAddressModel EmailAddress { get; set; }
+
+        /// <summary></summary>
+        [JsonPropertyName("id_issue_date")]
+        public IdIssueDateModel IdIssueDate { get; set; }
 
         /// <summary></summary>
         [JsonPropertyName("id_expiry_date")]
@@ -53,12 +69,24 @@
         public AddressSubdivisionModel AddressSubdivision { get; set; }
 
         /// <summary></summary>
+        [JsonPropertyName("address_unit")]
+        public AddressUnitModel AddressUnit { get; set; }
+
+        /// <summary></summary>
         [JsonPropertyName("address_postal_code")]
         public AddressPostalcodeModel AddressPostalcode { get; set; }
 
         /// <summary></summary>
         [JsonPropertyName("address_country")]
         public AddressCountryModel AddressCountry { get; set; }
+
+        /// <summary></summary>
+        [JsonPropertyName("phone_number")]
+        public PhoneNumberModel PhoneNumber { get; set; }
+
+        /// <summary></summary>
+        [JsonPropertyName("sex")]
+        public GenderModel Gender { get; set; }
         #endregion Properties
     }
     #endregion Class

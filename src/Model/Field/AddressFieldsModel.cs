@@ -6,6 +6,8 @@
 
     public class AddressSubdivisionModel : FieldBaseModel { }
 
+    public class AddressUnitModel : FieldBaseModel { }
+
     public class AddressPostalcodeModel : FieldBaseModel { }
 
     public class AddressCountryModel : FieldBaseModel { }
