@@ -12,7 +12,7 @@
 
         public static readonly string HTTP_NAMED_CLIENT = "berbix";
 
-        public static readonly string API_SECRET_KEY_NAME = "Berbix:API_SECRET_KEY";
+        public static readonly string API_SECRET_KEY_NAME = "Berbix_API_SECRET_KEY";
         #endregion Constants
     }
     #endregion Class
